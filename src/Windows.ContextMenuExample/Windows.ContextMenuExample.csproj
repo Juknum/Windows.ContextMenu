@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Windows.ContextMenu\Windows.ContextMenu.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\waving-hand.ico" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Windows.ContextMenu/Windows.ContextMenu.csproj" />
+    <Project Path="src/Windows.ContextMenuExample/Windows.ContextMenuExample.csproj" />
   </Folder>
 </Solution>
