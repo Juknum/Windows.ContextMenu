@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net10.0;net8.0;net472;net481</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+
+		<PackageId>Juknum.Windows.ContextMenu</PackageId>
+		<Version>0.0.0</Version>
+		<Authors>Juknum</Authors>
+		<Description>A simple Windows context menu implementation for .NET</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/Juknum/WinContextMenu</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		
+		<AssemblyTitle>Juknum.Windows.ContextMenu</AssemblyTitle>
+		<RootNamespace>Juknum.Windows.ContextMenu</RootNamespace>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Vanara.PInvoke.Shell32" Version="5.0.5" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" Condition="Exists('..\..\README.md')" />
+	</ItemGroup>
+
+</Project>
