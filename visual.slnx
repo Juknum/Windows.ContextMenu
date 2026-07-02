@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/doc/">
+    <File Path=".github/workflows/publish-nuget.yml" />
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Windows.ContextMenu/Windows.ContextMenu.csproj" />
     <Project Path="src/Windows.ContextMenuExample/Windows.ContextMenuExample.csproj" />
