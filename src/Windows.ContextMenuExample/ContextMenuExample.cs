@@ -1,7 +1,6 @@
-﻿using System.Runtime.InteropServices;
-using Juknum.Windows.ContextMenu;
+﻿using Juknum.Windows.ContextMenu;
 using Juknum.Windows.ContextMenu.Utils;
-using static Vanara.PInvoke.Shell32;
+using System.Runtime.InteropServices;
 
 namespace Juknum.Windows.ContextMenuExample;
 
@@ -12,7 +11,7 @@ public class ContextMenuExample : ExplorerCommandMenu {
 
     public override Guid Guid => new("E3629D56-49C1-41F8-B7EF-0057EE60126C");
     public override string Title => "Example Context Menu";
-    public override IExplorerCommand[] Commands => [
+    public override ExplorerCommand[] Commands => [
         new ContextMenuCommandHelloWorld(),
     ];
 

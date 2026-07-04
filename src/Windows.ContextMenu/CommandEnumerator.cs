@@ -1,7 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using Juknum.Windows.ContextMenu.Interfaces;
+using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using Vanara.PInvoke;
-using static Vanara.PInvoke.Shell32;
 
 namespace Juknum.Windows.ContextMenu;
 
@@ -12,14 +12,14 @@ internal class CommandEnumerator(IExplorerCommand[] commands) : IEnumExplorerCom
     private readonly IExplorerCommand[] commands = commands;
 
     #region IEnumExplorerCommand Members
-    public HRESULT Next(uint celt, IExplorerCommand[] rgelt, out uint pceltFetched) {
-        pceltFetched = 0;
+    public HRESULT Next(uint celt, IExplorerCommand[] pUICommand, IntPtr pceltFetched) {
+        uint fetched = 0;
 
-        while (pceltFetched < celt && index < commands.Length) {
-            rgelt[pceltFetched++] = commands[index++];
+        while (fetched < celt && index < commands.Length) {
+            pUICommand[fetched++] = commands[index++];
         }
 
-        return pceltFetched == celt ? HRESULT.S_OK : HRESULT.S_FALSE;
+        return fetched == celt ? HRESULT.S_OK : HRESULT.S_FALSE;
     }
 
     public HRESULT Skip(uint celt) {

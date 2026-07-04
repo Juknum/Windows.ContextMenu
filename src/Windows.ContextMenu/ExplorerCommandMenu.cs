@@ -10,9 +10,9 @@ namespace Juknum.Windows.ContextMenu;
 [SupportedOSPlatform("windows")]
 public abstract class ExplorerCommandMenu : ExplorerCommand {
     /// <summary>
-    /// Array of <see cref="IExplorerCommand"/> objects that represent the commands in the menu.
+    /// Array of <see cref="ExplorerCommand"/> objects that represent the commands in the menu.
     /// </summary>
-    public abstract IExplorerCommand[] Commands { get; }
+    public abstract ExplorerCommand[] Commands { get; }
 
     #region ExplorerCommand Members
     /// <summary>
@@ -36,7 +36,7 @@ public abstract class ExplorerCommandMenu : ExplorerCommand {
         return HRESULT.S_OK;
     }
 
-    public override HRESULT EnumSubCommands(out IEnumExplorerCommand? ppEnum) {
+    public override HRESULT EnumSubCommands(out Interfaces.IEnumExplorerCommand? ppEnum) {
         try {
             ppEnum = new CommandEnumerator(Commands);
             return HRESULT.S_OK;

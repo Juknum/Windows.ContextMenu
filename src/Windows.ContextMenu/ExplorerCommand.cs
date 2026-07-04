@@ -8,7 +8,7 @@ namespace Juknum.Windows.ContextMenu;
 
 [ComVisible(false)]
 [SupportedOSPlatform("windows")]
-public abstract class ExplorerCommand : IExplorerCommand {
+public abstract class ExplorerCommand : Interfaces.IExplorerCommand {
 
     /// <summary>
     /// Unique identifier (GUID) of the command.
@@ -88,7 +88,7 @@ public abstract class ExplorerCommand : IExplorerCommand {
         return HRESULT.S_OK;
     }
 
-    public virtual HRESULT EnumSubCommands(out IEnumExplorerCommand? ppEnum) {
+    public virtual HRESULT EnumSubCommands(out Interfaces.IEnumExplorerCommand? ppEnum) {
         ppEnum = null;
         return HRESULT.E_NOTIMPL;
     }
