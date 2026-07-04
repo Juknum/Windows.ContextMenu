@@ -12,11 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Windows.ContextMenu\Windows.ContextMenu.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Resource Include="Resources\waving-hand.ico" />
+	  <ProjectReference Include="..\Juknum.Windows.ContextMenu\Juknum.Windows.ContextMenu.csproj" />
 	</ItemGroup>
 
 	<!-- START COM Registration -->
@@ -25,7 +21,7 @@
 		<Exec IgnoreExitCode="true" Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)Scripts/PreBuild.ps1&quot; -Configuration &quot;$(Configuration)&quot; -TargetPath &quot;$(TargetPath)&quot;">
 			<Output TaskParameter="ExitCode" PropertyName="PreBuildExitCode" />
 		</Exec>
-		<Exec  Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" Command="start explorer.exe" />
+		<Exec Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" Command="start explorer.exe" />
 		<Error Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" Text="Pre-build event failed." />
 	</Target>
 	
@@ -34,7 +30,7 @@
 		<Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)Scripts/PostBuild.ps1&quot; -Configuration &quot;$(Configuration)&quot; -TargetPath &quot;$(TargetPath)&quot;">
 			<Output TaskParameter="ExitCode" PropertyName="PostBuildExitCode" />
 		</Exec>
-		<Exec  Command="start explorer.exe" />
+		<Exec Command="start explorer.exe" />
 		<Error Condition="$([System.Int32]::Parse($(PostBuildExitCode))) != 0" Text="Post-build event failed." />
 	</Target>
 	

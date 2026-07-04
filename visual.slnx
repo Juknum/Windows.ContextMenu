@@ -4,7 +4,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/Windows.ContextMenu/Windows.ContextMenu.csproj" />
-    <Project Path="src/Windows.ContextMenuExample/Windows.ContextMenuExample.csproj" />
+    <Project Path="src/Juknum.Windows.ContextMenu/Juknum.Windows.ContextMenu.csproj" />
+    <Project Path="src/Juknum.Windows.ContextMenu.Example/Juknum.Windows.ContextMenu.Example.csproj" />
   </Folder>
 </Solution>

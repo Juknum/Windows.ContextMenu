@@ -17,9 +17,6 @@
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		
-		<AssemblyTitle>Juknum.Windows.ContextMenu</AssemblyTitle>
-		<RootNamespace>Juknum.Windows.ContextMenu</RootNamespace>
 
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\Juknum.Windows.ContextMenu.snk</AssemblyOriginatorKeyFile>
