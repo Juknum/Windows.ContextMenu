@@ -5,6 +5,8 @@
 
 A .NET library for building Windows Explorer context menu handlers with `IExplorerCommand`. This library is intended for .NET developers who want to add custom commands to the Windows Explorer context menu without having to implement the COM plumbing themselves.
 
+![alt text](assets/image.png)
+
 ## Targets & Dependencies
 
 ![](https://img.shields.io/badge/.NET-8.0%20--%2010.0-blue.svg?style=for-the-badge) ![](https://img.shields.io/badge/.NET%20Framework-4.7.2%20--%204.8.1-blue.svg?style=for-the-badge)
@@ -123,4 +125,4 @@ The sample project in [`src/Windows.ContextMenuExample`](./src/Windows.ContextMe
 ## Notes
 
 - The runtime behavior is Windows-only because the API is built around Explorer COM interfaces.
-- `Icon` should return a shell-compatible icon reference, such as an assembly resource path, e.g. `@"C:\Path\To\MyAssembly.dll,-123"`. The `-123` is the resource ID of the icon in the DLL. You can also use `.ico` files or other shell-supported icon formats.
+- `Icon` should return a shell-compatible icon reference, such as an assembly resource path, e.g. `@"C:\Path\To\MyAssembly.dll,-123"`. The `-123` is the resource ID of the icon in the DLL. You can also reference a `.ico` file or other shell-supported icon formats on disk. If you return `null`, the command will not have an icon in the context menu.
