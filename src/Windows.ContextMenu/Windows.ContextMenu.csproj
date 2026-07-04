@@ -20,6 +20,9 @@
 		
 		<AssemblyTitle>Juknum.Windows.ContextMenu</AssemblyTitle>
 		<RootNamespace>Juknum.Windows.ContextMenu</RootNamespace>
+
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\Juknum.Windows.ContextMenu.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	
 	<ItemGroup>

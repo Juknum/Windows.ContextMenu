@@ -1,11 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0-windows</TargetFramework>
+		<TargetFramework>net48</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<IsPackable>false</IsPackable>
+		<LangVersion>latest</LangVersion>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\..\Juknum.Windows.ContextMenu.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -16,4 +19,24 @@
 		<Resource Include="Resources\waving-hand.ico" />
 	</ItemGroup>
 
+	<!-- START COM Registration -->
+	<Target Name="Unregistering DLL" BeforeTargets="PreBuildEvent" Condition="$(Configuration) == 'Debug'">
+		<Exec IgnoreExitCode="true" Command="taskkill /f /im explorer.exe" />
+		<Exec IgnoreExitCode="true" Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)Scripts/PreBuild.ps1&quot; -Configuration &quot;$(Configuration)&quot; -TargetPath &quot;$(TargetPath)&quot;">
+			<Output TaskParameter="ExitCode" PropertyName="PreBuildExitCode" />
+		</Exec>
+		<Exec  Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" Command="start explorer.exe" />
+		<Error Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" Text="Pre-build event failed." />
+	</Target>
+	
+	<Target Name="Registering DLL" BeforeTargets="PostBuildEvent" Condition="$(Configuration) == 'Debug'">
+		<Exec Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" IgnoreExitCode="true" Command="taskkill /f /im explorer.exe" />
+		<Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)Scripts/PostBuild.ps1&quot; -Configuration &quot;$(Configuration)&quot; -TargetPath &quot;$(TargetPath)&quot;">
+			<Output TaskParameter="ExitCode" PropertyName="PostBuildExitCode" />
+		</Exec>
+		<Exec  Command="start explorer.exe" />
+		<Error Condition="$([System.Int32]::Parse($(PostBuildExitCode))) != 0" Text="Post-build event failed." />
+	</Target>
+	
+	<!-- END COM Registration -->
 </Project>

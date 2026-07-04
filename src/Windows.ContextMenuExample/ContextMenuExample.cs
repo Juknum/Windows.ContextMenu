@@ -8,7 +8,7 @@ namespace Juknum.Windows.ContextMenuExample;
 [ComVisible(true)]
 [ClassInterface(ClassInterfaceType.None)]
 [Guid("E3629D56-49C1-41F8-B7EF-0057EE60126C")]
-internal class ContextMenuExample : ExplorerCommandMenu {
+public class ContextMenuExample : ExplorerCommandMenu {
 
     public override Guid Guid => new("E3629D56-49C1-41F8-B7EF-0057EE60126C");
     public override string Title => "Example Context Menu";
@@ -28,7 +28,7 @@ internal class ContextMenuExample : ExplorerCommandMenu {
         );
     }
 
-    [ComRegisterFunction]
+    [ComUnregisterFunction]
     public static void Unregister(Type _) {
         RegistrationHelper.UnregisterCommand("ExampleContextMenu");
     }
