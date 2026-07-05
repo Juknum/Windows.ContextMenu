@@ -3,8 +3,11 @@
     <File Path=".github/workflows/publish-nuget.yml" />
     <File Path="README.md" />
   </Folder>
+  <Folder Name="/examples/">
+    <Project Path="examples/net10.0-windows/.NET 10.0.csproj" />
+    <Project Path="examples/net481/.NET Framework 4.8.1.csproj" />
+  </Folder>
   <Folder Name="/src/">
-    <Project Path="src/Juknum.Windows.ContextMenu/Juknum.Windows.ContextMenu.csproj" />
-    <Project Path="src/Juknum.Windows.ContextMenu.Example/Juknum.Windows.ContextMenu.Example.csproj" />
+    <Project Path="src/Juknum.Windows.ContextMenu.csproj" />
   </Folder>
 </Solution>

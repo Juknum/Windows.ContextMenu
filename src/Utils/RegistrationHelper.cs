@@ -1,9 +1,7 @@
 ﻿using Microsoft.Win32;
-using System.Runtime.Versioning;
 
 namespace Juknum.Windows.ContextMenu.Utils;
 
-[SupportedOSPlatform("windows")]
 public static class RegistrationHelper {
 
     /// <summary>

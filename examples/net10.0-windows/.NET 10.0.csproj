@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net10.0-windows</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -9,10 +9,14 @@
 		<LangVersion>latest</LangVersion>
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\Juknum.Windows.ContextMenu.snk</AssemblyOriginatorKeyFile>
+
+		<!-- COM hosting for .NET Core/5+ -->
+		<EnableComHosting>true</EnableComHosting>
+		<ComVisible>true</ComVisible>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Juknum.Windows.ContextMenu\Juknum.Windows.ContextMenu.csproj" />
+	  <ProjectReference Include="..\..\src\Juknum.Windows.ContextMenu.csproj" />
 	</ItemGroup>
 
 	<!-- START COM Registration -->

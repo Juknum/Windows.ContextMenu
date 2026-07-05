@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net10.0;net8.0;net472;net481</TargetFrameworks>
+		<TargetFrameworks>net462;net472;net481;net8.0-windows;net9.0-windows;net10.0-windows</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
@@ -13,13 +13,14 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/Juknum/WinContextMenu</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
 		<SignAssembly>true</SignAssembly>
-		<AssemblyOriginatorKeyFile>..\..\Juknum.Windows.ContextMenu.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>..\Juknum.Windows.ContextMenu.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -27,7 +28,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" Condition="Exists('..\..\README.md')" />
+		<None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" Condition="Exists('..\README.md')" />
 	</ItemGroup>
 
 </Project>

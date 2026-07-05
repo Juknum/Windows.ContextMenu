@@ -1,13 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-using System.Runtime.Versioning;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.Shell32;
 
 namespace Juknum.Windows.ContextMenu;
 
 [ComVisible(false)]
-[SupportedOSPlatform("windows")]
 public abstract class ExplorerCommand : Interfaces.IExplorerCommand {
 
     /// <summary>

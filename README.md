@@ -5,7 +5,7 @@
 
 A .NET library for building Windows Explorer context menu handlers with `IExplorerCommand`. This library is intended for .NET developers who want to add custom commands to the Windows Explorer context menu without having to implement the COM plumbing themselves.
 
-![alt text](assets/image.png)
+![](https://raw.githubusercontent.com/Juknum/Windows.ContextMenu/refs/heads/main/assets/image.png)
 
 ## Targets & Dependencies
 
@@ -52,7 +52,7 @@ internal class ContextMenuCommandHelloWorld : ExplorerCommand {
 ```
 
 > [!NOTE]  
-> The GUID is used as the COM CLSID for the command. It is recommended to generate a new GUID for the main registered class (e.g: `E3629D56-49C1-41F8-B7EF-0057EE60126C`) and use derived GUIDs (e.g: `E3629D56-0001-0001-0001-000000000001`) for any child commands
+> The GUID is used as the COM CLSID for the command. It is recommended to generate a new GUID for the main registered class (e.g: `E3629D56-49C1-41F8-B7EF-0057EE60126C`) and use derived GUIDs (e.g: `E3629D56-0001-0001-0001-000000000001`) for any child commands/menus.
 
 ### `ExplorerCommandMenu`
 
@@ -118,9 +118,18 @@ public static void Register(Type type) {
 > [!IMPORTANT]  
 > Only the top-level command or menu class should define the static `Register` and `Unregister` methods. Child commands that are returned from `ExplorerCommandMenu.Commands` should stay as plain command implementations and should not register themselves separately.
 
+## Registering In Explorer
+
+The sample projects register the built assembly from their build scripts, but the mechanism differs by target framework:
+
+- .NET Framework uses `RegAsm.exe` to register the DLL and to remove it.
+- .NET Core / .NET 8+ uses the generated `.comhost.dll` and registers it with `regsvr32.exe` instead.
+
+If you want to mirror the examples, look at the build hooks in [examples/net481/Scripts](https://github.com/Juknum/Windows.ContextMenu/tree/main/examples/net481/Scripts) and [examples/net10.0-windows/Scripts](https://github.com/Juknum/Windows.ContextMenu/tree/main/examples/net10.0-windows/Scripts). Both registration paths require elevated permissions because they write to Explorer-related registry locations.
+
 ## Example Project
 
-The sample project in [`src/Windows.ContextMenuExample`](./src/Windows.ContextMenuExample/) shows one concrete way to wire the library together. 
+The sample project in [src/Windows.ContextMenuExample](https://github.com/Juknum/Windows.ContextMenu/tree/main/src/Windows.ContextMenuExample) shows one concrete way to wire the library together. 
 
 ## Notes
 

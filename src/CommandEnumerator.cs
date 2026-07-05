@@ -1,12 +1,10 @@
 ﻿using Juknum.Windows.ContextMenu.Interfaces;
 using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
 using Vanara.PInvoke;
 
 namespace Juknum.Windows.ContextMenu;
 
 [ComVisible(false)]
-[SupportedOSPlatform("windows")]
 internal class CommandEnumerator(IExplorerCommand[] commands) : IEnumExplorerCommand {
     private int index = 0;
     private readonly IExplorerCommand[] commands = commands;
