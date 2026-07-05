@@ -129,7 +129,7 @@ If you want to mirror the examples, look at the build hooks in [examples/net481/
 
 ## Example Project
 
-The sample project in [src/Windows.ContextMenuExample](https://github.com/Juknum/Windows.ContextMenu/tree/main/src/Windows.ContextMenuExample) shows one concrete way to wire the library together. 
+The sample project in [examples/](https://github.com/Juknum/Windows.ContextMenu/tree/main/examples) shows one concrete way to wire the library together. 
 
 ## Notes
 

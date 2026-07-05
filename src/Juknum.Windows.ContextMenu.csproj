@@ -11,7 +11,7 @@
 		<Authors>Juknum</Authors>
 		<Description>A simple Windows context menu implementation for .NET</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<RepositoryUrl>https://github.com/Juknum/WinContextMenu</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Juknum/Windows.ContextMenu</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 
