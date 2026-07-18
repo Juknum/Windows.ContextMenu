@@ -11,17 +11,17 @@ public abstract class ExplorerCommand : Interfaces.IExplorerCommand {
     /// <summary>
     /// Unique identifier (GUID) of the command.
     /// </summary>
-    public abstract Guid Guid      { get; }
+    public abstract Guid Guid { get; }
 
     /// <summary>
     /// Title of the command, which is displayed in the context menu.
     /// </summary>
-    public abstract string Title   { get; }
+    public abstract string Title { get; }
 
     /// <summary>
     /// Optional icon for the command, which is displayed in the context menu.
     /// </summary>
-    public virtual string? Icon    { get; } = null;
+    public virtual string? Icon { get; } = null;
 
     /// <summary>
     /// Optional tooltip for the command, which is displayed when hovering over the command in the context menu.

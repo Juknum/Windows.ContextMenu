@@ -53,7 +53,7 @@ public static class RegistrationHelper {
             if (subKey.StartsWith('.')) {
 #endif
                 DeleteVerb(@$"{subKey}\shell", verbName);
-            } 
+            }
         }
     }
 
@@ -72,6 +72,6 @@ public static class RegistrationHelper {
         try {
             Registry.ClassesRoot.DeleteSubKey($@"{parentPath}\{verbName}", throwOnMissingSubKey: false);
         }
-        catch (UnauthorizedAccessException) {}
+        catch (UnauthorizedAccessException) { }
     }
 }
