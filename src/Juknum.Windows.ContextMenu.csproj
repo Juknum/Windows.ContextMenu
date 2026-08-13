@@ -24,7 +24,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Vanara.PInvoke.Shell32" Version="5.0.5" />
+		<PackageReference Include="Vanara.PInvoke.Shell32" Version="5.0.6" />
 	</ItemGroup>
 	
 	<ItemGroup>
