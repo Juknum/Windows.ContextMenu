@@ -17,4 +17,5 @@
     <Project Path="src/Juknum.Windows.ContextMenu.csproj" />
   </Folder>
   <File Path="Directory.Build.props" />
+  <File Path="nuget.config" />
 </Solution>
