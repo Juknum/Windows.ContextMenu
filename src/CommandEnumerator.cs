@@ -1,6 +1,6 @@
-﻿using Juknum.Windows.ContextMenu.Interfaces;
 using System.Runtime.InteropServices;
 using Vanara.PInvoke;
+using static Vanara.PInvoke.Shell32;
 
 namespace Juknum.Windows.ContextMenu;
 
@@ -15,6 +15,10 @@ internal class CommandEnumerator(IExplorerCommand[] commands) : IEnumExplorerCom
 
         while (fetched < celt && index < commands.Length) {
             pUICommand[fetched++] = commands[index++];
+        }
+
+        if (pceltFetched != IntPtr.Zero) {
+            Marshal.WriteInt32(pceltFetched, (int)fetched);
         }
 
         return fetched == celt ? HRESULT.S_OK : HRESULT.S_FALSE;

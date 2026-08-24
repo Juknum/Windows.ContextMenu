@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.Shell32;
@@ -6,7 +6,7 @@ using static Vanara.PInvoke.Shell32;
 namespace Juknum.Windows.ContextMenu;
 
 [ComVisible(false)]
-public abstract class ExplorerCommand : Interfaces.IExplorerCommand {
+public abstract class ExplorerCommand : IExplorerCommand {
 
     /// <summary>
     /// Unique identifier (GUID) of the command.
@@ -86,7 +86,7 @@ public abstract class ExplorerCommand : Interfaces.IExplorerCommand {
         return HRESULT.S_OK;
     }
 
-    public virtual HRESULT EnumSubCommands(out Interfaces.IEnumExplorerCommand? ppEnum) {
+    public virtual HRESULT EnumSubCommands(out IEnumExplorerCommand? ppEnum) {
         ppEnum = null;
         return HRESULT.E_NOTIMPL;
     }

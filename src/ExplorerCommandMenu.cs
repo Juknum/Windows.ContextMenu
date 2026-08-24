@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.Shell32;
@@ -34,7 +34,7 @@ public abstract class ExplorerCommandMenu : ExplorerCommand {
         return HRESULT.S_OK;
     }
 
-    public override HRESULT EnumSubCommands(out Interfaces.IEnumExplorerCommand? ppEnum) {
+    public override HRESULT EnumSubCommands(out IEnumExplorerCommand? ppEnum) {
         try {
             ppEnum = new CommandEnumerator(Commands);
             return HRESULT.S_OK;
