@@ -1,13 +1,14 @@
 name: Publish to NuGet
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
     inputs:
       version:
         description: 'Package version (e.g. 1.2.3)'
-        required: true
+        required: false
 
 jobs:
   build-and-publish:
@@ -32,10 +33,12 @@ jobs:
         id: version
         shell: pwsh
         run: |
-          if ("${{ github.event_name }}" -eq "release") {
-            $ver = "${{ github.event.release.tag_name }}" -replace '^v',''
+          if ("${{ github.ref_type }}" -eq "tag") {
+            $ver = "${{ github.ref_name }}" -replace '^v',''
+          } elseif ("${{ inputs.version }}") {
+            $ver = "${{ inputs.version }}" -replace '^v',''
           } else {
-            $ver = "${{ inputs.version }}"
+            $ver = "${{ github.ref_name }}" -replace '^v',''
           }
           echo "VERSION=$ver" >> $env:GITHUB_ENV
 
