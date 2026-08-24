@@ -135,3 +135,8 @@ The sample project in [examples/](https://github.com/Juknum/Windows.ContextMenu/
 
 - The runtime behavior is Windows-only because the API is built around Explorer COM interfaces.
 - `Icon` should return a shell-compatible icon reference, such as an assembly resource path, e.g. `@"C:\Path\To\MyAssembly.dll,-123"`. The `-123` is the resource ID of the icon in the DLL. You can also reference a `.ico` file or other shell-supported icon formats on disk. If you return `null`, the command will not have an icon in the context menu.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions, debugging tips, coding standards, and contribution guidelines.
+
