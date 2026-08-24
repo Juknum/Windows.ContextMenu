@@ -9,7 +9,7 @@ A .NET library for building Windows Explorer context menu handlers with `IExplor
 
 ## Targets & Dependencies
 
-![](https://img.shields.io/badge/.NET-8.0%20--%2010.0-blue.svg?style=for-the-badge) ![](https://img.shields.io/badge/.NET%20Framework-4.7.2%20--%204.8.1-blue.svg?style=for-the-badge)
+![](https://img.shields.io/badge/.NET-8.0%20--%2010.0-blue.svg?style=for-the-badge) ![](https://img.shields.io/badge/.NET%20Framework-4.6.2%20--%204.8.1-blue.svg?style=for-the-badge)
 
 The library depends on [`Vanara.PInvoke.Shell32`](https://www.nuget.org/packages/Vanara.PInvoke.Shell32) for the Explorer COM interfaces and shell types.
 
@@ -127,9 +127,13 @@ The sample projects register the built assembly from their build scripts, but th
 
 If you want to mirror the examples, look at the build hooks in [examples/net481/Scripts](https://github.com/Juknum/Windows.ContextMenu/tree/main/examples/net481/Scripts) and [examples/net10.0-windows/Scripts](https://github.com/Juknum/Windows.ContextMenu/tree/main/examples/net10.0-windows/Scripts). Both registration paths require elevated permissions because they write to Explorer-related registry locations.
 
-## Example Project
+## Example Projects
 
-The sample project in [examples/](https://github.com/Juknum/Windows.ContextMenu/tree/main/examples) shows one concrete way to wire the library together. 
+The [examples/](examples/) directory contains sample implementations and packaging projects:
+
+- **[.NET 10.0](examples/net10.0-windows)**: Context menu extension using modern .NET with COM hosting (`.comhost.dll`).
+- **[.NET Framework 4.8.1](examples/net481)**: Context menu extension using .NET Framework with `RegAsm.exe`.
+- **[WiX MSI Installer](examples/installer.wix)**: Complete WiX v4/v5 MSI packaging example that bundles self-contained binaries and handles COM registration under the hood for **x86 (32-bit)**, **x64 (64-bit)**, and **ARM64**.
 
 ## Notes
 

@@ -1,0 +1,29 @@
+<Project Sdk="WixToolset.Sdk/5.0.0">
+  <PropertyGroup>
+    <!-- Default to x64 if no platform is passed -->
+    <Platform Condition="'$(Platform)' == ''">x64</Platform>
+    <Platforms>x86;x64;arm64</Platforms>
+    
+    <InstallerPlatform Condition="'$(Platform)' == 'x86'">x86</InstallerPlatform>
+    <InstallerPlatform Condition="'$(Platform)' == 'x64'">x64</InstallerPlatform>
+    <InstallerPlatform Condition="'$(Platform)' == 'arm64'">arm64</InstallerPlatform>
+
+    <RuntimeIdentifier Condition="'$(Platform)' == 'x86'">win-x86</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(Platform)' == 'x64'">win-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(Platform)' == 'arm64'">win-arm64</RuntimeIdentifier>
+
+    <!-- Path to the example project and self-contained publish target directory -->
+    <ContextMenuProj>$(MSBuildThisFileDirectory)..\net10.0-windows\.NET 10.0.csproj</ContextMenuProj>
+    <PublishDir>$(MSBuildThisFileDirectory)publish\$(RuntimeIdentifier)\</PublishDir>
+    
+    <!-- Pass preprocessor variables to Package.wxs -->
+    <DefineConstants>PublishDir=$(PublishDir);Arch=$(Platform)</DefineConstants>
+    <OutputName>ContextMenuExample-$(Platform)</OutputName>
+  </PropertyGroup>
+
+  <!-- Automatically publish the context menu project (self-contained) for the target architecture -->
+  <Target Name="PublishContextMenuPayload" BeforeTargets="BeforeBuild">
+    <Message Importance="high" Text=">> Publishing ContextMenuExample (self-contained) for $(RuntimeIdentifier)..." />
+    <Exec Command="dotnet publish &quot;$(ContextMenuProj)&quot; -c $(Configuration) -r $(RuntimeIdentifier) --self-contained true -p:RegisterComOnBuild=false -o &quot;$(PublishDir)&quot;" />
+  </Target>
+</Project>

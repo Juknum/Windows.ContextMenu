@@ -1,0 +1,84 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <!-- Architecture-specific setup -->
+  <?if $(var.Arch) = "x86"?>
+    <?define SystemRegsvr = "[SystemFolder]regsvr32.exe"?>
+    <?define ProgramFilesDir = "ProgramFilesFolder"?>
+    <?define ComponentBitness = "always32"?>
+    <?define ArchLabel = " (x86)"?>
+  <?else?>
+    <?define SystemRegsvr = "[System64Folder]regsvr32.exe"?>
+    <?define ProgramFilesDir = "ProgramFiles64Folder"?>
+    <?define ComponentBitness = "always64"?>
+    <?define ArchLabel = " (64-bit)"?>
+  <?endif?>
+
+  <Package 
+    Name="Example Context Menu Extension$(var.ArchLabel)" 
+    Manufacturer="Juknum" 
+    Version="1.0.0.0" 
+    UpgradeCode="B6A8B174-8C37-4D2B-8DF9-123456789ABC"
+    Scope="perMachine">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Example Context Menu is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Installation Directory -->
+    <StandardDirectory Id="$(var.ProgramFilesDir)">
+      <Directory Id="INSTALLFOLDER" Name="ContextMenuExample" />
+    </StandardDirectory>
+
+    <Feature Id="MainFeature" Title="ContextMenu" Level="1">
+      <ComponentGroupRef Id="AppComponents" />
+    </Feature>
+  </Package>
+
+  <Fragment>
+    <ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
+      
+      <!-- Primary COM Host Component -->
+      <Component Id="ComHostComponent" Guid="*" Bitness="$(var.ComponentBitness)">
+        <File Id="ComHostDll" 
+              Source="$(var.PublishDir)ContextMenuExample.comhost.dll" 
+              KeyPath="yes" />
+      </Component>
+
+      <!-- Bundle all remaining self-contained DLLs and runtime assets -->
+      <Files Include="$(var.PublishDir)**" 
+             Exclude="$(var.PublishDir)ContextMenuExample.comhost.dll" 
+             Directory="INSTALLFOLDER" />
+
+    </ComponentGroup>
+
+    <!-- Option 2: CustomAction to invoke regsvr32 on install and regsvr32 /u on uninstall -->
+
+    <!-- Install Action: calls DllRegisterServer inside comhost.dll (invokes [ComRegisterFunction]) -->
+    <CustomAction Id="RegisterComHost"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand='$(var.SystemRegsvr) /s "[#ComHostDll]"'
+                  Execute="deferred"
+                  Impersonate="no"
+                  Return="check" />
+
+    <!-- Uninstall Action: calls DllUnregisterServer inside comhost.dll (invokes [ComUnregisterFunction]) -->
+    <CustomAction Id="UnregisterComHost"
+                  Directory="INSTALLFOLDER"
+                  ExeCommand='$(var.SystemRegsvr) /u /s "[#ComHostDll]"'
+                  Execute="deferred"
+                  Impersonate="no"
+                  Return="ignore" />
+
+    <InstallExecuteSequence>
+      <!-- Register after files are copied to the target directory -->
+      <Custom Action="RegisterComHost" 
+              Before="InstallFinalize" 
+              Condition="NOT Installed OR REINSTALL" />
+
+      <!-- Unregister before files are removed from disk -->
+      <Custom Action="UnregisterComHost" 
+              Before="RemoveFiles" 
+              Condition="Installed AND (REMOVE=&quot;ALL&quot; OR UPGRADINGPRODUCTCODE)" />
+    </InstallExecuteSequence>
+
+  </Fragment>
+</Wix>

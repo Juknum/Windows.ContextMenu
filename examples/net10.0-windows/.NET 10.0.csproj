@@ -21,7 +21,7 @@
 	</ItemGroup>
 
 	<!-- START COM Registration -->
-	<Target Name="Unregistering DLL" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)' == 'Debug' and $([MSBuild]::IsOSPlatform('Windows'))">
+	<Target Name="Unregistering DLL" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)' == 'Debug' and '$(RegisterComOnBuild)' != 'false' and $([MSBuild]::IsOSPlatform('Windows'))">
 		<Exec IgnoreExitCode="true" Command="taskkill /f /im explorer.exe" />
 		<Exec IgnoreExitCode="true" Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)Scripts/PreBuild.ps1&quot; -Configuration &quot;$(Configuration)&quot; -TargetPath &quot;$(TargetPath)&quot;">
 			<Output TaskParameter="ExitCode" PropertyName="PreBuildExitCode" />
@@ -30,7 +30,7 @@
 		<Error Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" Text="Pre-build event failed." />
 	</Target>
 	
-	<Target Name="Registering DLL" BeforeTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug' and $([MSBuild]::IsOSPlatform('Windows'))">
+	<Target Name="Registering DLL" BeforeTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Debug' and '$(RegisterComOnBuild)' != 'false' and $([MSBuild]::IsOSPlatform('Windows'))">
 		<Exec Condition="$([System.Int32]::Parse($(PreBuildExitCode))) != 0" IgnoreExitCode="true" Command="taskkill /f /im explorer.exe" />
 		<Exec Command="powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;$(ProjectDir)Scripts/PostBuild.ps1&quot; -Configuration &quot;$(Configuration)&quot; -TargetPath &quot;$(TargetPath)&quot;">
 			<Output TaskParameter="ExitCode" PropertyName="PostBuildExitCode" />

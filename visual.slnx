@@ -12,6 +12,7 @@
   <Folder Name="/examples/">
     <Project Path="examples/net10.0-windows/.NET 10.0.csproj" />
     <Project Path="examples/net481/.NET Framework 4.8.1.csproj" />
+    <Project Path="examples/installer.wix/Installer.wixproj" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/Juknum.Windows.ContextMenu.csproj" />
