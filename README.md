@@ -5,7 +5,7 @@
 
 A .NET library for building Windows Explorer context menu handlers with `IExplorerCommand`. This library is intended for .NET developers who want to add custom commands to the Windows Explorer context menu without having to implement the COM plumbing themselves.
 
-![](https://raw.githubusercontent.com/Juknum/Windows.ContextMenu/refs/heads/main/assets/image.png)
+![](https://raw.githubusercontent.com/Juknum/Windows.ContextMenu/refs/heads/main/.github/assets/image.png)
 
 ## Targets & Dependencies
 
