@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net462;net472;net481;net8.0-windows;net9.0-windows;net10.0-windows</TargetFrameworks>
@@ -13,7 +13,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/Juknum/Windows.ContextMenu</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>logo.png</PackageIcon>
 
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<IncludeSymbols>true</IncludeSymbols>
@@ -29,6 +29,7 @@
 	
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" Condition="Exists('..\README.md')" />
+		<None Include="..\.github\assets\logo.png" Pack="true" PackagePath="\" Visible="false" Condition="Exists('..\.github\assets\logo.png')" />
 	</ItemGroup>
 
 </Project>
